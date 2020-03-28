@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    uuid: {
+    uuid_user: {
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
@@ -10,10 +10,11 @@ module.exports = (sequelize, DataTypes) => {
       unique: true
     },
     img: {
-
+      type: DataTypes.TEXT,
+      allowNull: true
     },
     username: {
-      type: STRING,
+      type: DataTypes.STRING,
       allowNull: false,
 			unique: true
     },
@@ -32,7 +33,49 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    User.hasOne(models.Profile, {
+      onDelete: 'cascade',
+      foreignKey: {
+        field: 'user_uuid',
+        allowNull: false
+      },
+      as: 'Profile'
+    });
+    User.hasMany(models.Tourgroups, {
+      foreignKey: {
+        field: 'user_uuid',
+        allowNull: false
+      },
+      as: 'Tourgroups'
+    });
+    User.hasMany(models.Articles, {
+      foreignKey: {
+        field: 'user_uuid',
+        allowNull: false
+      },
+      as: 'Articles'
+    });
+    User.hasMany(models.News, {
+      foreignKey: {
+        field: 'user_uuid',
+        allowNull: false
+      },
+      as: 'News'
+    });
+    User.hasMany(models.questions, {
+      foreignKey: {
+        field: 'user_uuid',
+        allowNull: false
+      },
+      as: 'questions'
+    });
+    User.hasMany(models.Complain, {
+      foreignKey: {
+        field: 'user_uuid',
+        allowNull: false
+      },
+      as: 'Complain'
+    });
   };
   return User;
 };
