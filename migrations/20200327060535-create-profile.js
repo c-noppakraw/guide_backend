@@ -10,13 +10,13 @@ module.exports = {
 				unique: true,
 				type: Sequelize.UUID
       },
-      // code: {
-      //   allowNull: false,
-      //   autoIncrement: true,
-      //   type: Sequelize.INTEGER,
-      //   defaultValue: '0000'
-      // },
       guide_code: {
+        allowNull: false,
+        autoIncrement: true,
+        type: Sequelize.INTEGER,
+        unique: true
+      },
+      code: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
@@ -39,6 +39,7 @@ module.exports = {
       },
       passport_no: {
         type: Sequelize.STRING,
+        unique: true,
         allowNull: false
       },
       passport_exp: {
@@ -47,11 +48,11 @@ module.exports = {
       },
       visa_no: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       visa_exp: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
       },
       country: {
         type: Sequelize.STRING,
@@ -63,6 +64,7 @@ module.exports = {
       },
       phone: {
         type: Sequelize.STRING,
+        unique: true,
         allowNull: false
       },
       email: {
@@ -72,7 +74,7 @@ module.exports = {
       },
       user_created: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       user_update: {
         type: Sequelize.STRING,

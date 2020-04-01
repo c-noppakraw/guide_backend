@@ -9,13 +9,13 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: false,
       unique: true
     },
-    // code: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    //   autoIncrement: true,
-    //   defaultValue: '0000'
-    // },
     guide_code: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      unique: true
+    },
+    code: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
@@ -38,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     passport_no: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false
     },
     passport_exp: {
@@ -46,11 +47,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     visa_no: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     visa_exp: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
     country: {
       type: DataTypes.STRING,
@@ -62,6 +63,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     phone: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false
     },
     email: {
@@ -71,7 +73,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     user_created: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     user_update: {
       type: DataTypes.STRING,
