@@ -30,7 +30,7 @@ app.use(function(req, res, next) {
 });
 
 db.sequelize
-  .sync()
+  .sync({force: false})
   .then(() => {
     console.log('Connection has been established successfully.');
   })
