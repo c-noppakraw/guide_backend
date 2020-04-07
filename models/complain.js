@@ -9,10 +9,6 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: false,
       unique: true
     },
-    link_complain: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     visible: {
       type: DataTypes.INTEGER,
       allowNull: false,

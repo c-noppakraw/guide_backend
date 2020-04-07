@@ -10,10 +10,6 @@ module.exports = {
         autoIncrement: false,
         unique: true
       },
-      link_complain: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       visible: {
         type: Sequelize.INTEGER,
         allowNull: false,
