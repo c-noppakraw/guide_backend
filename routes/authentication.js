@@ -39,7 +39,7 @@ router.post('/', login_validator, async (req, res) => {
 				// return res.render('./backend/theme/login', { errors: [{ msg: 'รหัสผ่านไม่ถูกต้อง' }] });
 			}
 			const payload = {
-				_id: user.uuid,
+				_id: user.uuid_user,
 				_level: user.level,
 				_username: user.username,
 				_firstname_th: profile.firstname_th,
@@ -86,7 +86,7 @@ router.post('/register', uploadProfile.single('profile_image'), register_validat
 			phone,
 			email,
 			user_created,
-			user_updated
+			user_update
 		} = req.body;
 		const errors = validationResult(req);
 			if (!errors.isEmpty()) {
@@ -120,7 +120,7 @@ router.post('/register', uploadProfile.single('profile_image'), register_validat
 			phone,
 			email,
 			user_created,
-			user_updated,
+			user_update,
 			ProfileUuidUser: newUser.uuid_user
 		});
 		return res.status(201).json({ data_user: newUser, data_profile: newProfile });
