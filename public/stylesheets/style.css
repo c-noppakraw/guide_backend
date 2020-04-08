@@ -1,8 +1,5 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
 
-a {
-  color: #00B7FF;
+.font-th {
+  font-family: 'Kanit', sans-serif;
 }

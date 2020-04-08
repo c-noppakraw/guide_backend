@@ -9,7 +9,7 @@ const register_validator = require('../middlewares/validators/register/register'
 const login_validator = require('../middlewares/validators/login/login')
 
 router.get('/', async (req, res) => {
-	return res.render('index', { title: 'Login Page' });
+	return res.render('./login/login', { title: 'Login To Manage Guide Go Inter' });
 });
 
 router.post('/', login_validator, async (req, res) => {
@@ -20,13 +20,18 @@ router.post('/', login_validator, async (req, res) => {
 		} = req.body;
 		const errors = validationResult(req);
 			if (!errors.isEmpty()) {
-				return res.status(400).json({ errors: errors.array() });
+				// return res.status(400).json({ errors: errors.array() });
+				return res.render('./login/login', { 
+					errors: errors.array(),
+					username
+				});
 			}
 		const user = await User.findOne({
 			where: { username }
 		});
 		if(!user){
-			return res.status(404).json({ errors: [{ msg: 'ไม่พบชื่อผู้ใช้' }] });
+			// return res.status(404).json({ errors: [{ msg: 'ไม่พบชื่อผู้ใช้' }] });
+			return res.render('./login/login', { errors: [{ msg: 'ไม่พบชื่อผู้ใช้' }] });
 		} else {
 			const user_uuid = user.uuid_user;
 			const profile = await Profile.findOne({
@@ -35,8 +40,8 @@ router.post('/', login_validator, async (req, res) => {
 
 			const isMatch = await bcrypt.compare(password, user.password);
 			if (!isMatch) {
-				return res.status(400).json({ errors: [{ msg: 'รหัสผ่านไม่ถูกต้อง' }] });
-				// return res.render('./backend/theme/login', { errors: [{ msg: 'รหัสผ่านไม่ถูกต้อง' }] });
+				// return res.status(400).json({ errors: [{ msg: 'รหัสผ่านไม่ถูกต้อง' }] });
+				return res.render('./login/login', { errors: [{ msg: 'รหัสผ่านไม่ถูกต้อง' }] });
 			}
 			const payload = {
 				_id: user.uuid_user,
