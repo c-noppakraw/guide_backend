@@ -1,0 +1,138 @@
+extends ../theme/layout
+
+block content
+
+    //  BEGIN CONTENT BODY 
+    - var img_use = data.img
+    - var id_user = data.uuid_user
+    - var first_name_th = data.Profile.first_name_th
+    - var last_name_th = data.Profile.last_name_th
+    - var first_name_en = data.Profile.first_name_en
+    - var last_name_en = data.Profile.last_name_en
+    - var passport_no = data.Profile.passport_no
+    - var passport_exp = data.Profile.passport_exp
+    - var visible = data.visible
+    - var created_at = data.createdAt
+    - var date_reg = new Date(created_at).toISOString().replace(/T/, ' ').replace(/\..+/, '')
+    - var visa_no = data.Profile.visa_no ? data.Profile.visa_no : '-'
+    - var visa_exp = data.Profile.visa_exp ? data.Profile.visa_exp : '-'
+    - var country = data.Profile.country
+    - var city = data.Profile.city
+    - var phone = data.Profile.phone
+    - var email = data.Profile.email
+
+    - var dd = String(created_at.getDate()).padStart(2, '0')
+    - var mm = String(created_at.getMonth() + 1).padStart(2, '0') //January is 0!
+    - var yyyy = created_at.getFullYear()
+    - var date_reg = yyyy + '-' + mm + '-' + dd
+
+    - var dd = String(passport_exp.getDate()).padStart(2, '0')
+    - var mm = String(passport_exp.getMonth() + 1).padStart(2, '0') //January is 0!
+    - var yyyy = passport_exp.getFullYear()
+    - var passport_exp = yyyy + '-' + mm + '-' + dd
+
+    .page-content
+        //  BEGIN PAGE HEADER
+        .page-bar.font-th
+            ul.page-breadcrumb
+                li
+                    a(href='/guide/list').font-blue-ebonyclay การอนุมัติไกด์
+                    i.fa.fa-angle-right
+                    span 
+                        b.font-blue-ebonyclay #{first_name_th + ' ' + last_name_th}
+        //  END PAGE BAR 
+        //  BEGIN PAGE TITLE
+        h3.page-title.font-th ข้อมูลการลงทะเบียน
+            small  (#{first_name_th + ' ' + last_name_th})
+        //  END PAGE TITLE
+        //  END PAGE HEADER
+        .row
+            .col-md-12.boxshadow
+                .row.bg-grey-cararra.font-th(style='padding: 5px;')
+                    form(action='/guide/'+id_user+'/edit' method='post')
+                        .col-md-4(style='padding: 5px')
+                            .text-center.bg-default(style='padding: 10px;')
+                                img(alt='#{img_use}' src='/storages/profile_image/'+img_use)(style='width: 60%;')
+                            .form-group(style='margin-top: 10px;')
+                                label.col-md-5.control-label.font-dark(style='margin-top: 7px; padding: 0px;') สถานะ :
+                                .col-md-7
+                                    p.form-control-static.font-yellow-lemon(style='padding-bottom: 0px; font-weight: 600;') รอการอนุมัติ
+                            .form-group(style='margin-top: 10px;')
+                                label.col-md-6.control-label.font-dark(style='margin-top: 7px; padding: 0px;') ลงทะเบียนเมื่อ :
+                                .col-md-6
+                                    p.form-control-static.font-blue-chambray(style='padding-bottom: 0px; font-weight: 600;') #{date_reg}
+                        .col-md-8
+                            .row
+                                .col-md-6
+                                    .form-group(style='margin-top: 10px;')
+                                        label.col-md-2.control-label.font-dark(style='margin-top: 7px; padding: 0px;') ชื่อ :
+                                        .col-md-10
+                                            input.form-control.spinner.font-blue-chambray#first_name_th(name='first_name_th' style='padding-bottom: 0px; font-weight: 600;' value=first_name_th)
+                                .col-md-6
+                                    .form-group(style='margin-top: 10px;')
+                                        label.col-md-2.control-label.font-dark(style='margin-top: 7px; padding: 0px;') สกุล :
+                                        .col-md-10
+                                            input.form-control.spinner.font-blue-chambray#last_name_th(name='last_name_th' style='padding-bottom: 0px; font-weight: 600;' value=last_name_th)
+                            .row
+                                .col-md-6
+                                    .form-group(style='margin-top: 10px;')
+                                        label.col-md-4.control-label.font-dark(style='margin-top: 7px; padding: 0px;') Firstname :
+                                        .col-md-8
+                                            input.form-control.spinner.font-blue-chambray#first_name_en(name='first_name_en' style='padding-bottom: 0px; font-weight: 600;' value=first_name_en)
+                                .col-md-6
+                                    .form-group(style='margin-top: 10px;')
+                                        label.col-md-4.control-label.font-dark(style='margin-top: 7px; padding: 0px;') Lastname :
+                                        .col-md-8
+                                            input.form-control.spinner.font-blue-chambray#last_name_en(name='last_name_en' style='padding-bottom: 0px; font-weight: 600;' value=last_name_en)
+                            .row
+                                .col-md-6
+                                    .form-group(style='margin-top: 10px;')
+                                        label.col-md-6.control-label.font-dark(style='margin-top: 7px; padding: 0px;') Passport No :
+                                        .col-md-6
+                                            input.form-control.spinner.font-blue-chambray#passport_no(name='passport_no' style='padding-bottom: 0px; font-weight: 600;' value=passport_no)
+                                .col-md-6
+                                    .form-group(style='margin-top: 10px;')
+                                        label.col-md-6.control-label.font-dark(style='margin-top: 7px; padding: 0px;') Passport Exp :
+                                        .col-md-6
+                                            input.form-control.spinner.font-blue-chambray#passport_exp(name='passport_exp' style='padding-bottom: 0px; font-weight: 600;' value=passport_exp)
+                            .row
+                                .col-md-6
+                                    .form-group(style='margin-top: 10px;')
+                                        label.col-md-6.control-label.font-dark(style='margin-top: 7px; padding: 0px;') Visa No :
+                                        .col-md-6
+                                            input.form-control.spinner.font-blue-chambray#visa_no(name='visa_no' style='padding-bottom: 0px; font-weight: 600;' value=visa_no)
+                                .col-md-6
+                                    .form-group(style='margin-top: 10px;')
+                                        label.col-md-6.control-label.font-dark(style='margin-top: 7px; padding: 0px;') Visa Exp :
+                                        .col-md-6
+                                            input.form-control.spinner.font-blue-chambray#visa_exp(name='visa_exp' style='padding-bottom: 0px; font-weight: 600;' value=visa_exp)
+                            .row
+                                .col-md-6
+                                    .form-group(style='margin-top: 10px;')
+                                        label.col-md-6.control-label.font-dark(style='margin-top: 7px; padding: 0px;') City :
+                                        .col-md-6
+                                            input.form-control.spinner.font-blue-chambray#city(name='city' style='padding-bottom: 0px; font-weight: 600;' value=city)
+                                .col-md-6
+                                    .form-group(style='margin-top: 10px;')
+                                        label.col-md-6.control-label.font-dark(style='margin-top: 7px; padding: 0px;') Country :
+                                        .col-md-6
+                                            input.form-control.spinner.font-blue-chambray#country(name='country' style='padding-bottom: 0px; font-weight: 600;' value=country)
+                            .row
+                                .col-md-6
+                                    .form-group(style='margin-top: 10px;')
+                                        label.col-md-6.control-label.font-dark(style='margin-top: 7px; padding: 0px;') Phone :
+                                        .col-md-6
+                                            input.form-control.spinner.font-blue-chambray#phone(name='phone' style='padding-bottom: 0px; font-weight: 600;' value=phone)
+                                .col-md-6
+                                    .form-group(style='margin-top: 10px;')
+                                        label.col-md-6.control-label.font-dark(style='margin-top: 7px; padding: 0px;') E-mail :
+                                        .col-md-6
+                                            input.form-control.spinner.font-blue-chambray#email(name='email' style='padding-bottom: 0px; font-weight: 600;' value=email)
+                            .input-group
+                                span.input-group-btn
+                                    button.btn.btn-block.green-jungle.uppercase.bold(type='submit')(style='margin-top: 10px;') บันทึก
+
+    //  END CONTENT BODY
+    script.
+        var data = !{JSON.stringify(data)};
+        console.log(data)

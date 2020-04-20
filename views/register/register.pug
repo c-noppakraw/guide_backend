@@ -1,0 +1,66 @@
+extends ../theme/login/layout
+
+block content
+    //  BEGIN LOGO 
+    .logo
+        a(href='/')
+            img(src='/assets/pages/img/logo.png' alt)
+    //  END LOGO 
+    .container.content-reg
+        //  BEGIN REGISTRATION FORM 
+        form.register-form(action='/register' method='post')
+            h3.font-green Sign Up
+            .row
+                .col-md-4
+                    p.hint.font-th ข้อมูลสำหรับเข้าสู่ระบบ :
+                    .form-group#user_name-warn(name='user_name-warn')
+                        input.form-control.placeholder-no-fix#user_name(type='text' placeholder='Username' name='user_name' value= user_name ? user_name : '')
+                    .form-group#pass_word-warn(name='pass_word-warn')
+                        input.form-control.placeholder-no-fix#pass_word(type='password' placeholder='Password' name='pass_word' value= pass_word ? pass_word : '')
+                    .form-group#confirm_password-warn(name='confirm_password-warn')
+                        input.form-control.placeholder-no-fix#confirm_password(type='password' placeholder='Re-type Your Password' name='confirm_password' value= confirm_password ? confirm_password : '')
+                .col-md-4
+                    p.hint.font-th ข้อมูลส่วนตัว :
+                    .form-group#first_name_th-warn(name='first_name_th-warn')
+                        input.form-control.placeholder-no-fix#first_name_th(type='text' placeholder='Firstname TH' name='first_name_th' value= first_name_th ? first_name_th : '')
+                    .form-group#last_name_th-warn(name='last_name_th-warn')
+                        input.form-control.placeholder-no-fix#last_name_th(type='text' placeholder='Lastname TH' name='last_name_th' value= last_name_th ? last_name_th : '')
+                    .form-group#first_name_en-warn(name='first_name_en-warn')
+                        input.form-control.placeholder-no-fix#first_name_en(type='text' placeholder='Firstname EN' name='first_name_en' value= first_name_en ? first_name_en : '')
+                    .form-group#last_name_en-warn(name='last_name_en-warn')
+                        input.form-control.placeholder-no-fix#last_name_en(type='text' placeholder='Lastname EN' name='last_name_en' value= last_name_en ? last_name_en : '')
+                    .form-group#frm_email-warn(name='frm_email-warn')
+                        input.form-control.placeholder-no-fix#frm_email(type='text' placeholder='Email' name='frm_email' value= frm_email ? frm_email : '')
+                    .form-group#phone-warn(name='phone-warn')
+                        input.form-control.placeholder-no-fix#phone(type='text' placeholder='Phone' name='phone' value= phone ? phone : '')
+                .col-md-4
+                    p.hint.font-th ข้อมูลหนังสือเดินทางและ เมือง/ประเทศ ที่ประจำการ :
+                    .form-group#code-warn(name='code-warn')
+                        input.form-control.placeholder-no-fix#code(type='text' placeholder='Code No.' name='code' value= code ? code : '')
+                    .form-group#passport_no-warn(name='passport_no-warn')
+                        input.form-control.placeholder-no-fix#passport_no(type='text' placeholder='Passport No.' name='passport_no' value= passport_no ? passport_no : '')
+                    .form-group#passport_exp-warn(name='passport_exp-warn')
+                        input.form-control.placeholder-no-fix#passport_exp(type='text' placeholder='Passport Exp. (yyy-mm-dd)' name='passport_exp' value= passport_exp ? passport_exp : '')
+                    .form-group
+                        input.form-control.placeholder-no-fix#visa_no(type='text' placeholder='Visa No.' name='visa_no' value= visa_no ? visa_no : '')
+                    .form-group
+                        input.form-control.placeholder-no-fix#visa_exp(type='text' placeholder='Visa Exp. (yyy-mm-dd)' name='visa_exp' value= visa_exp ? visa_exp : '')
+                    .form-group#frm_city-warn(name='frm_city-warn')
+                        input.form-control.placeholder-no-fix#frm_city(type='text' placeholder='City' name='frm_city' value= frm_city ? frm_city : '')
+                    .form-group#frm_country-warn(name='frm_country-warn')
+                        input.form-control.placeholder-no-fix#frm_country(type='text' placeholder='Country' name='frm_country' value= frm_country ? frm_country : '')
+                    input#visible(type='hidden' name='visible' value='2')
+                    input#level(type='hidden' name='level' value='4')
+            .form-actions
+                a.btn.green.btn-outline(type='button' href='/') Back
+                button.btn.btn-success.uppercase.pull-right(type='submit') Submit
+        //  END REGISTRATION FORM 
+
+    if errors
+        script.
+            var errors = !{JSON.stringify(errors)};
+            console.log(errors)
+            errors.forEach(error => {
+                $(`#${error.param+'-warn'}`).append(`<div class="help-block font-th">${error.msg}</div>`)
+                $(`#${error.param+'-warn'}`).addClass('has-error')
+            })

@@ -1,0 +1,23 @@
+extends ../theme/layout
+
+block content
+
+    //  BEGIN CONTENT BODY 
+    .page-content
+        //  BEGIN PAGE HEADER
+        .page-bar.font-th
+            ul.page-breadcrumb
+                li
+                    a(href='/home') 
+                        b.font-blue-ebonyclay หน้าแรก
+                    i.fa.fa-angle-right
+        //  END PAGE BAR 
+        //  BEGIN PAGE TITLE
+        h3.page-title.font-th ยินดีตอนรับ
+            small  (#{firstname_th + ' ' + lastname_th})
+        //  END PAGE TITLE
+        //  END PAGE HEADER
+        .blog-page.blog-content-1 
+            
+        //  BEGIN PAGE BAR 
+    //  END CONTENT BODY

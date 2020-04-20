@@ -1,0 +1,86 @@
+extends ../theme/layout
+
+block content
+
+    //  BEGIN CONTENT BODY 
+    .page-content
+        //  BEGIN PAGE HEADER
+        .page-bar.font-th
+            ul.page-breadcrumb
+                li
+                    a(href='/guide') 
+                        b.font-blue-ebonyclay รายชื่อไกด์
+                    i.fa.fa-angle-right
+        //  END PAGE BAR 
+        //  BEGIN PAGE TITLE
+        h3.page-title.font-th การจัดการไกด์
+            small  (เพิ่ม แก้ไข ไกด์)
+        //  END PAGE TITLE
+        //  END PAGE HEADER
+        .row
+            .col-md-3
+                .content-block.border-default.font-th.boxshadow
+                    form(action='', method='get')
+                        .form-group
+                            input.form-control(type='text' placeholder='ค้นหาจาก ชื่อ-สกุล เลขประจำตัวไกด์')
+                        .form-group
+                            .input-group.date.date-picker(data-date-format='yyyy-mm-dd')
+                                input.form-control#date_start(type='text' name='date_start' placeholder='ค้นหาจากวันที่ลงสมัคร')
+                                span.input-group-btn
+                                    button.btn.bg-blue-dark.font-grey(type='button')
+                                        i.fa.fa-calendar
+                        .form-group
+                            .input-group
+                                span.input-group-btn
+                                    button.btn.btn-block.blue.uppercase.bold(type='button') ค้นหา
+            .col-md-9
+                .portlet-body.table-scrollable.boxshadow
+                    table.font-th.table.table-striped.table-bordered.table-hover
+                        thead.bg-blue-dark.font-grey
+                            tr
+                                th.text-center(style='width:5% !important') สถานะ
+                                th.text-center(style='width:5% !important') เลขประจำตัวไกด์
+                                th.text-center(style='width:30% !important') ชื่อ-สกุล
+                                th.text-center(style='width:10% !important') Passport
+                                th.text-center(style='width:10% !important') Visa
+                                th.text-center(style='width:20% !important') วันที่อนุมัติ
+                                th.text-center(style='width:10% !important') ผู้อนุมัติ
+                                th.text-center(style='width:10% !important') แกไข
+                        tbody.bg-grey-steel
+                            if data != 0
+                                for item in data
+                                    - var uuid_user = item.uuid_user
+                                    - var updated_at = item.updatedAt
+                                    - var user_update = item.Profile.user_update
+                                    - var code = item.Profile.code
+                                    - var first_name_th = item.Profile.first_name_th
+                                    - var last_name_th = item.Profile.last_name_th
+                                    - var first_name_en = item.Profile.first_name_en
+                                    - var last_name_en = item.Profile.last_name_en
+                                    - var passport_no = item.Profile.passport_no
+                                    - var visa_no = item.Profile.visa_no ? item.Profile.visa_no : '-'
+                                    - var visible = item.visible
+                                    - var change_date = new Date(updated_at).toISOString().replace(/T/, ' ').replace(/\..+/, '')
+                                        tr
+                                            if visible == 1
+                                                td.text-center.bg-green-jungle.bg-font-green-jungle เปิด
+                                            else
+                                                td.text-center ปิด
+                                            td.text-center #{code}
+                                            td #{first_name_th + ' ' + last_name_th}
+                                                small #{' (' + first_name_en + ' ' + last_name_en + ')'}
+                                            td.text-center #{passport_no}
+                                            td.text-center #{visa_no}
+                                            td.text-center #{change_date}
+                                            td.text-center #{user_update}
+                                            td.text-center
+                                                a(href='/guide/'+uuid_user+'/edit')
+                                                    i.fa.fa-edit
+                            else
+                                tr
+                                    td.text-center(colspan='4') ไม่มีข้อมูลในระบบ
+
+    //  END CONTENT BODY
+    script.
+        var data = !{JSON.stringify(data)};
+        console.log(data)

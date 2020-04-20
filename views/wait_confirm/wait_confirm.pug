@@ -1,0 +1,51 @@
+extends ../theme/login/layout
+
+block content
+    //  BEGIN LOGO 
+    .logo
+        a(href='/')
+            img(src='/assets/pages/img/logo.png' alt)
+    //  END LOGO
+    - var first_name_th = data.first_name_th
+    - var last_name_th = data.last_name_th
+    - var first_name_en = data.first_name_en
+    - var last_name_en = data.last_name_en
+    - var code = data.code
+    - var createdAt = data.createdAt
+    - var date_reg = new Date(createdAt).toISOString().replace(/T/, ' ').replace(/\..+/, '') 
+    .container
+        .content-status
+            .row(style='margin-bottom: 35px;')
+                .col-md-12
+                    h1.font-th
+                        i.fa.fa-clock-o
+                        |  อยู่ระหว่างการตรวจสอบ
+                .col-md-5(style='text-align: right;')
+                    p.font-th
+                        | ชื่อ-สกุล :
+                    p.font-th
+                        | เลขประจำตัวไกด์ :
+                    p.font-th
+                        | สมัครสมาชิกเมื่อ :
+                .col-md-7
+                    p.font-th 
+                        strong #{first_name_th + ' ' + last_name_th} 
+                        small #{'(' + first_name_en + ' ' + last_name_en + ')'}
+                    p
+                        strong #{code}
+                    p
+                        strong #{date_reg}
+                .col-md-12.text-center.font-th(style='margin-top: 25px;')
+                    small 
+                        strong.font-red-thunderbird * 
+                        |  กรุณา 
+                        strong.font-blue-dark รอการตรวจสอบ
+                        |  จากระบบ ท่านจึงจะสามารถ 
+                        strong.font-blue-dark เข้าใช้งาน
+                        |  ในระบบได้
+                        a(href='/') 
+                            ins  กลับสู่หน้าหลัก
+
+    script.
+        var data = !{JSON.stringify(data)};
+        console.log(data)

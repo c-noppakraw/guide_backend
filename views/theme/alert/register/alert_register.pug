@@ -1,0 +1,9 @@
+if (alerts)
+  each alert in alerts
+    .portlet-body
+        .alert(role="alert" class="alert-" + alert.status)
+            strong.font-th #{alert.msg}!
+            p.font-th กรุณารอการอนุมัติเพื่อเข้าใช้งานในระบบ
+            small.font-th ซึ่งท่าสามารถ 
+                ins เข้าสู่ระบบ
+                |  เพื่อตรวจสอบสถานะได้
