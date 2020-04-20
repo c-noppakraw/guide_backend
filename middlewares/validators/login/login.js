@@ -10,7 +10,7 @@ const validator = [
 		.not()
 		.isEmpty()
 		.isLength({ min: 8, max: 8 })
-		.withMessage('รหัสผ่านต้องมีความยาว 8 ตัวอักษร')
+		.withMessage('รหัสผ่านต้องมีความยาว 8 อักษรเท่านั้น')
 ];
 
 module.exports = validator;
