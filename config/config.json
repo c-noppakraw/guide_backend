@@ -1,12 +1,12 @@
 {
   "development": {
-		"username": "root",
-		"password": null,
-		"database": "guidegointer",
-		"host": "127.0.0.1",
-		"dialect": "mysql",
-		"operatorsAliases": false
-	},
+    "username": "guidegointer",
+    "password": "6tneYAvsKj6LKUUh",
+    "database": "guidegointer_db",
+    "host": "10.0.1.37",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
   "test": {
     "username": "root",
     "password": null,
