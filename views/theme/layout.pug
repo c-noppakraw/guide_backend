@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+html(lang="TH-th")
+  head
+      meta(charset="UTF-8")
+      meta(name="viewport", content="width=device-width, initial-scale=1.0")
+      meta(http-equiv="X-UA-Compatible", content="ie=edge")
+      title= title
+      link(rel='stylesheet', href='/stylesheets/style.css')
+      include ./default/stylesheet/default
+      include ./default/script/default
+      include ../theme/blog/blog
+      include ../theme/date_picker/date_picker
+      
+  body.page-header-fixed.page-sidebar-closed-hide-logo.page-content-white
+    include ./header
+      block content
+    include ./footer
+    
+    

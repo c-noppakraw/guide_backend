@@ -1,0 +1,124 @@
+//  BEGIN HEADER 
+.page-header.navbar.navbar-fixed-top
+    // BEGIN HEADER INNER
+    .page-header-inner
+        // BEGIN LOGO
+        .page-logo
+            a(href='/dashboards')
+                img.logo-default(src='/assets/layouts/layout/img/logo.png' alt='logo')
+            .menu-toggler.sidebar-toggler
+                span
+        // END LOGO
+        // BEGIN RESPONSIVE MENU TOGGLER
+        a.menu-toggler.responsive-toggler(href='javascript:;' data-toggle='collapse' data-target='.navbar-collapse')
+            span
+        // END RESPONSIVE MENU TOGGLER
+        // BEGIN TOP NAVIGATION MENU
+        .top-menu
+            ul.nav.navbar-nav.pull-right
+                // BEGIN INBOX DROPDOWN 
+                //- li.dropdown.dropdown-extended.dropdown-inbox#header_inbox_bar
+                    a.dropdown-toggle(href='javascript:;' data-toggle='dropdown' data-hover='dropdown' data-close-others='true')
+                        i.icon-envelope-open
+                        span.badge.badge-default 4 
+                    ul.dropdown-menu
+                        li.external
+                            h3
+                                | You have
+                                span.bold  7 New
+                                |  Messages
+                            a(href='app_inbox.html') view all
+                        li
+                            ul.dropdown-menu-list.scroller(style='height: 275px;' data-handle-color='#637283')
+                                li
+                                    a(href='#')
+                                        span.photo
+                                            img.img-circle(src='/assets/layouts/layout3/img/avatar2.jpg' alt)
+                                        span.subject
+                                            span.from Lisa Wong 
+                                            span.time Just Now 
+                                        span.message Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh...
+                // END INBOX DROPDOWN
+                // BEGIN USER LOGIN DROPDOWN
+                li.dropdown.dropdown-user
+                    a.dropdown-toggle(href='javascript:;' data-toggle='dropdown' data-hover='dropdown' data-close-others='true')
+                        img.img-circle(alt='#{img_profile}' src='/storages/profile_image/'+img_profile)(style='width: 30px; height: 30px;')
+                        span.username.username-hide-on-mobile #{show_username}  
+                        i.fa.fa-angle-down
+                    ul.dropdown-menu.dropdown-menu-default
+                        li
+                            a(href='/profile/' + show_id + '/edit')
+                                i.icon-user
+                                |  My Profile 
+                        li
+                            a(href='/')
+                                i.icon-key
+                                |  Log Out
+                //  END USER LOGIN DROPDOWN
+                // BEGIN QUICK SIDEBAR TOGGLER
+                li.dropdown.dropdown-quick-sidebar-toggler
+                    a.dropdown-toggle(href='/')
+                        i.icon-logout
+                // END QUICK SIDEBAR TOGGLER
+        // END TOP NAVIGATION MENU
+    // END HEADER INNER
+//  END HEADER 
+//  BEGIN HEADER & CONTENT DIVIDER 
+.clearfix
+//  END HEADER & CONTENT DIVIDER
+//  BEGIN CONTAINER 
+.page-container
+    //  BEGIN SIDEBAR 
+    .page-sidebar-wrapper
+        //  BEGIN SIDEBAR 
+        .page-sidebar.navbar-collapse.collapse
+            // BEGIN SIDEBAR MENU
+            ul.page-sidebar-menu.page-header-fixed(data-keep-expanded='false' data-auto-scroll='true' data-slide-speed='200' style='padding-top: 20px')
+                li.nav-item.start
+                    a.nav-link.nav-toggle(href='/home')
+                        i.icon-home
+                        span.title.font-th หน้าแรก
+                li.heading
+                    h3.uppercase.font-th การจัดการ
+                li.nav-item
+                    a.nav-link.nav-toggle(href='javascript:;')
+                        i.fa.fa-group
+                        span.title.font-th จัดการผู้ใช้
+                        span.arrow
+                    ul.sub-menu
+                        //- li.nav-item
+                        //-     a.nav-link(href='/admins')
+                        //-         span.title.font-th พนักงาน
+                        li.nav-item
+                            a.nav-link(href='/guide/list')
+                                span.title.font-th อนุมัติไกด์
+                        li.nav-item
+                            a.nav-link(href='/guide')
+                                span.title.font-th ไกด์
+                //- li.nav-item
+                //-     a.nav-link.nav-toggle(href='javascript:;')
+                //-         i.fa.fa-file-text
+                //-         span.title.font-th จัดการแบบประเมิน
+                //-         span.arrow
+                //-     ul.sub-menu
+                //-         li.nav-item
+                //-             a.nav-link(href='/question')
+                //-                 span.title.font-th แบบประเมินความพึงพอใจ
+                //- li.nav-item
+                //-     a.nav-link.nav-toggle(href='javascript:;')
+                //-         i.fa.fa-book
+                //-         span.title.font-th จัดการบทความ
+                //-         span.arrow
+                //-     ul.sub-menu
+                //-         li.nav-item
+                //-             a.nav-link(href='/articles')
+                //-                 span.title.font-th บทความ
+            // END SIDEBAR MENU
+        //  END SIDEBAR 
+    //  END SIDEBAR 
+    //  BEGIN CONTENT 
+    .page-content-wrapper
+        //  *****DATA***** 
+    //  END CONTENT 
+//  END CONTAINER 
+
