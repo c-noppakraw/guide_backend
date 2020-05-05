@@ -15,7 +15,8 @@ router.get('/', authMiddleware, async (req, res) => {
             _img
         } = req.user;
         if (_level == 4) {
-            return res.redirect('/');
+            // return res.redirect('/');
+            return res.send('Ok');
         }
         return res.render('./home/home', { 
             title: 'Welcome To Manage Guide Go Inter',
