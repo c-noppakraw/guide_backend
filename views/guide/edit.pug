@@ -5,6 +5,8 @@ block content
     //  BEGIN CONTENT BODY 
     - var img_use = data.img
     - var id_user = data.uuid_user
+    - var username = data.username
+    - var ord_password = data.password
     - var first_name_th = data.Profile.first_name_th
     - var last_name_th = data.Profile.last_name_th
     - var first_name_en = data.Profile.first_name_en
@@ -12,24 +14,33 @@ block content
     - var passport_no = data.Profile.passport_no
     - var passport_exp = data.Profile.passport_exp
     - var visible = data.visible
-    - var created_at = data.createdAt
-    - var date_reg = new Date(created_at).toISOString().replace(/T/, ' ').replace(/\..+/, '')
-    - var visa_no = data.Profile.visa_no ? data.Profile.visa_no : '-'
-    - var visa_exp = data.Profile.visa_exp ? data.Profile.visa_exp : '-'
+    - var update_at = data.updatedAt
+    - var date_reg = new Date(update_at).toISOString().replace(/T/, ' ').replace(/\..+/, '')
+    - var visa_no = data.Profile.visa_no ? data.Profile.visa_no : ''
+    - var visa_exp = data.Profile.visa_exp
     - var country = data.Profile.country
     - var city = data.Profile.city
     - var phone = data.Profile.phone
     - var email = data.Profile.email
 
-    - var dd = String(created_at.getDate()).padStart(2, '0')
-    - var mm = String(created_at.getMonth() + 1).padStart(2, '0') //January is 0!
-    - var yyyy = created_at.getFullYear()
-    - var date_reg = yyyy + '-' + mm + '-' + dd
+    - var dd = String(update_at.getDate()).padStart(2, '0')
+    - var mm = String(update_at.getMonth() + 1).padStart(2, '0') //January is 0!
+    - var yyyy = update_at.getFullYear()
+    - var date_update = yyyy + '-' + mm + '-' + dd
 
     - var dd = String(passport_exp.getDate()).padStart(2, '0')
     - var mm = String(passport_exp.getMonth() + 1).padStart(2, '0') //January is 0!
     - var yyyy = passport_exp.getFullYear()
     - var passport_exp = yyyy + '-' + mm + '-' + dd
+
+    if visa_exp
+        - var dd = String(visa_exp.getDate()).padStart(2, '0')
+        - var mm = String(visa_exp.getMonth() + 1).padStart(2, '0') //January is 0!
+        - var yyyy = visa_exp.getFullYear()
+        - var visa_exp = yyyy + '-' + mm + '-' + dd
+    else
+        - var visa_exp = ''
+    
 
     .page-content
         //  BEGIN PAGE HEADER
@@ -50,18 +61,34 @@ block content
             .col-md-12.boxshadow
                 .row.bg-grey-cararra.font-th(style='padding: 5px;')
                     form(action='/guide/'+id_user+'/edit' method='post')
-                        .col-md-4(style='padding: 5px')
+                        .col-md-3(style='padding: 5px')
                             .text-center.bg-default(style='padding: 10px;')
                                 img(alt='#{img_use}' src='/storages/profile_image/'+img_use)(style='width: 60%;')
-                            .form-group(style='margin-top: 10px;')
-                                label.col-md-5.control-label.font-dark(style='margin-top: 7px; padding: 0px;') สถานะ :
-                                .col-md-7
-                                    p.form-control-static.font-yellow-lemon(style='padding-bottom: 0px; font-weight: 600;') รอการอนุมัติ
-                            .form-group(style='margin-top: 10px;')
-                                label.col-md-6.control-label.font-dark(style='margin-top: 7px; padding: 0px;') ลงทะเบียนเมื่อ :
-                                .col-md-6
-                                    p.form-control-static.font-blue-chambray(style='padding-bottom: 0px; font-weight: 600;') #{date_reg}
-                        .col-md-8
+                            h5.font-th 
+                                ins ข้อมูลเข้าระบบ
+                            .row
+                                .col-md-12
+                                    .form-group(style='margin-top: 10px;')
+                                        label.col-md-4.control-label.font-dark(style='margin-top: 7px; padding: 0px;') Username :
+                                        .col-md-8
+                                            p.form-control-static.font-blue-chambray(style='padding-bottom: 0px; font-weight: 600;') #{username}
+                            input#username(name='username' type='hidden' value=username)
+                            .row
+                                .col-md-12
+                                    .form-group(style='margin-top: 10px;')#password-warn(name='password-warn')
+                                        label.col-md-4.control-label.font-dark(style='margin-top: 7px; padding: 0px;') Password :
+                                        .col-md-8
+                                            input.form-control.static.font-blue-chambray#password(name='password' type='password' style='padding-bottom: 0px; font-weight: 600;')
+                            .row
+                                .col-md-12
+                                    .form-group(style='margin-top: 10px;')#re_password-warn(name='re_password-warn')
+                                        label.col-md-4.control-label.font-dark(style='margin-top: 7px; padding: 0px;') Re-Password :
+                                        .col-md-8
+                                            input.form-control.static.font-blue-chambray#re_password(name='re_password' type='password' style='padding-bottom: 0px; font-weight: 600;')
+                            input#ord_password(name='ord_password' type='hidden' value=ord_password)
+                        .col-md-9
+                            h5.font-th 
+                                ins ข้อมูลส่วนตัว
                             .row
                                 .col-md-6
                                     .form-group(style='margin-top: 10px;')
@@ -136,3 +163,14 @@ block content
     script.
         var data = !{JSON.stringify(data)};
         console.log(data)
+
+    if errors
+        script.
+            var errors = !{JSON.stringify(errors)};
+            console.log(errors)
+            errors.forEach(error => {
+                $(`#${error.param+'-warn'}`).append(`<div class="help-block font-th">${error.msg}</div>`)
+                $(`#${error.param+'-warn'}`).addClass('has-error')
+            })
+            var data = !{JSON.stringify(data)};
+            console.log(data)

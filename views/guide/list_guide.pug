@@ -63,17 +63,18 @@ block content
                                     - var change_date = new Date(updated_at).toISOString().replace(/T/, ' ').replace(/\..+/, '')
                                         tr
                                             if visible == 1
-                                                td.text-center.bg-green-jungle.bg-font-green-jungle เปิด
+                                                td(style='padding-top: 15px;').text-center.bg-green-jungle.bg-font-green-jungle เปิด
                                             else
-                                                td.text-center ปิด
-                                            td.text-center #{code}
+                                                td(style='padding-top: 15px;').text-center ปิด
+                                            td(style='padding-top: 15px;').text-center #{code}
                                             td #{first_name_th + ' ' + last_name_th}
+                                                br
                                                 small #{' (' + first_name_en + ' ' + last_name_en + ')'}
-                                            td.text-center #{passport_no}
-                                            td.text-center #{visa_no}
+                                            td(style='padding-top: 15px;').text-center #{passport_no}
+                                            td(style='padding-top: 15px;').text-center #{visa_no}
                                             td.text-center #{change_date}
-                                            td.text-center #{user_update}
-                                            td.text-center
+                                            td(style='padding-top: 15px;').text-center #{user_update}
+                                            td(style='padding-top: 15px;').text-center
                                                 a(href='/guide/'+uuid_user+'/edit')
                                                     i.fa.fa-edit
                             else
